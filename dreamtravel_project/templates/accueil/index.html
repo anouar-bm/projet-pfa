@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="{% static "static/assets/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "/assets/css/style.css" %}">
 
 </head>
 <body>
@@ -75,16 +75,17 @@
     </div>
 
     <div class="controls">
-        <span class="vid-btn active" data-src="images/imgs/1.jpg"></span>
-        <span class="vid-btn" data-src="images/imgs/3.jpg"></span>
-        <span class="vid-btn" data-src="images/imgs/2.jpg"></span>
-        <span class="vid-btn" data-src="images/imgs/4.jpg"></span>
-        <span class="vid-btn" data-src="images/imgs/5.jpg"></span>
+        <span class="vid-btn active" data-src="{% static 'assets/images/imgs/1.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/3.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/2.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/4.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/5.jpg' %}"></span>
     </div>
 
     <div class="video-container">
-        <img src="images/imgs/1.jpg" id="video-slider" alt="Image Slider"></img>
+        <img src="{% static 'assets/images/imgs/1.jpg' %}" id="video-slider" alt="Image Slider">
     </div>
+    
 
 </section>
 
@@ -113,7 +114,7 @@
     <div class="row">
 
         <div class="image">
-            <img src="images/book-img.svg" alt="">
+            <img src="{% static 'assets/images/book-img.svg' %}" alt="">
         </div>
 
         <form action="">
@@ -163,63 +164,63 @@
     <div class="box-container">
 
         <div class="box">
-            <img src="images/imgs/jamaa.jpg" alt="">
+            <img src="{% static 'assets/images/imgs/jamaa.jpg' %}" alt="">
             <div class="content">
                 <h3>Jemaa el-Fnaa</h3>
                 <p>is a bustling square and renowned market in the medina quarter of Marrakesh's old city.</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/Jardin Majorelle.jpg" alt="">
+            <img src="{% static 'assets/images/imgs/Jardin Majorelle.jpg' %}" alt="">
             <div class="content">
                 <h3>Jardin Majorelle</h3>
                 <p>The Jardin Majorelle, is one of the most captivating botanical gardens in Morocco.</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/agafay desert.webp" alt="">
+            <img src="{% static 'assets/images/imgs/agafay desert.webp' %}" alt="">
             <div class="content">
                 <h3>Agafay Desert</h3>
                 <p>The Agafay Desert,is a unique and captivating desert landscape located near Marrakech</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/Bahia Palace3.jpg" alt="">
+            <img src="{% static 'assets/images/imgs/Bahia Palace3.jpg' %}" alt="">
             <div class="content">
                 <h3>Bahia Palace</h3>
                 <p>Bahia Palace is a magnificent architectural gem located in Marrakesh, Morocco. Known for its exquisite design</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/koutoubia.jpg" alt="">
+            <img src="{% static 'assets/images/imgs/koutoubia.jpg' %}" alt="">
             <div class="content">
                 <h3>Koutoubia Mosque</h3>
                 <p>The Kutubiyya Mosque, also known as the Koutoubia Mosque, is an iconic symbol of Marrakech</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/benyoussef.jpeg" alt="">
+            <img src="{% static 'assets/images/imgs/benyoussef.jpeg' %}" alt="">
             <div class="content">
                 <h3>Ben Youssef Madrasa</h3>
                 <p>is a historical Islamic school located in Marrakech, Morocco</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/Dar_El_Bacha_Thami_EL_Glaoui.jpg" alt="">
+            <img src="{% static 'assets/images/imgs/Dar_El_Bacha_Thami_EL_Glaoui.jpg' %}" alt="">
             <div class="content">
                 <h3>Dar El Bacha Museum</h3>
                 <p>is a captivating cultural institution that offers a glimpse into the rich history and heritage of Morocco</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/visiter-musee-marrakech.jpg" alt="">
+            <img src="{% static 'assets/images/imgs/visiter-musee-marrakech.jpg' %}" alt="">
             <div class="content">
                 <h3>Musée de Marrakech</h3>
                 <p>The Musée de Marrakech exhibits a collection of Moroccan art forms within the decadent salons of the Mnebhi Palace</p>
             </div>
         </div>
         <div class="box">
-            <img src="images/imgs/ks .jpg" alt="">
+            <img src="{% static 'assets/images/imgs/ks .jpg' %}" alt="">
             <div class="content">
                 
             </div>
@@ -279,7 +280,7 @@
     <div class="box-container">
 
         <div class="box">
-            <img src="images/placees/hotels riads/hotel atlas.jpg" alt="">
+            <img src="{% static 'assets/images/placees/hotels riads/hotel atlas.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Hotel Atlas</h3>
                 <p> Hotel Atlas is well situated in Marrakesh, and features a terrace, The property is close to Le Jardin Secret. The hotel has family rooms,All guest rooms feature bed linen.</p>
@@ -296,7 +297,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/hotels riads/Ibis Marrakech Palmeraie.jpg" alt="">
+            <img src="{% static 'assets/images/placees/hotels riads/Ibis Marrakech Palmeraie.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Hotel Ibis Marrakech Palmeraie </h3>
                 <p>Providing free WiFithroughout the property, a sun terrace with a swimming pool, restaurant and garden.Featuring a bar, room service and currency exchange for guests. </p>
@@ -313,7 +314,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/hotels riads/La Mamounia.jpg" alt="">
+            <img src="{% static 'assets/images/placees/hotels riads/La Mamounia.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Hotel la Mamounia</h3>
                 <p>La Mamounia, a symbol of traditional Moroccan hospitality, nestled in a 17 acre park, La Mamounia will remain the place for worldwide celebrities. </p>
@@ -330,7 +331,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/hotels riads/Pestana.jpg" alt="">
+            <img src="{% static 'assets/images/placees/hotels riads/Pestana.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Hotel Pestana</h3>
                 <p>Pestana CR7 Marrakech has a restaurant, outdoor swimming pool, fitness centre. Among the various facilities of this property are a garden, a terrace and a bar. </p>
@@ -348,7 +349,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/hotels riads/Riad Dar Sido.jpg" alt="">
+            <img src="{% static 'assets/images/placees/hotels riads/Riad Dar Sido.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Riad Dar Sido</h3>
                 <p>Riad Dar Sido offers 4-star accommodation in Marrakech and has a restaurant, a garden and a terrace. The property is around 1.7 km from Majorelle Gardens.</p>
@@ -365,7 +366,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/hotels riads/yaad city hotel.jpg" alt="">
+            <img src="{% static 'assets/images/placees/hotels riads/yaad city hotel.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Hotel Yaad City</h3>
                 <p>Yaad City Hotel offers 3-star accommodations in Marrakesh and features a seasonal outdoor swimming pool, a terrace and a shared lounge. </p>
@@ -406,7 +407,7 @@
     <div class="box-container">
 
         <div class="box">
-            <img src="images/placees/restaurants/11.jpg" alt="">
+            <img src="{% static 'assets/images/placees/restaurants/11.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Ling Ling Restaurant</h3>
                 <br>
@@ -423,7 +424,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/restaurants/33.jpg" alt="">
+            <img src="{% static 'assets/images/placees/restaurants/33.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Narwama Restaurant</h3>
                 <p>Moroccan,International,Mediterranean</p>
@@ -439,7 +440,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/restaurants/Dar Zellij.jpg" alt="">
+            <img src="{% static 'assets/images/placees/restaurants/Dar Zellij.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Dar Zellij Restaurant</h3>
                 <br>
@@ -456,7 +457,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/restaurants/Dardar Rooftop Cocktails & Eat.jpg" alt="">
+            <img src="{% static 'assets/images/placees/restaurants/Dardar Rooftop Cocktails & Eat.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Gusto Restaurant</h3>
                 <p>Italian, Mediterranean, Vegetarian Friendly</p>
@@ -472,7 +473,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/restaurants/le-douar.jpg" alt="">
+            <img src="{% static 'assets/images/placees/restaurants/le-douar.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Le Douar Restaurant</h3>
                 <p>Marocaine, Arabe</p>
@@ -488,7 +489,7 @@
         </div>
 
         <div class="box">
-            <img src="images/placees/restaurants/Lao Marrakech.jpg" alt="">
+            <img src="{% static 'assets/images/placees/restaurants/Lao Marrakech.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> laÔ Restaurant</h3>
                 <p>French, Internationa lDiner</p>
@@ -527,7 +528,7 @@
     <div class="box-container">
 
         <div class="box">
-            <img src="images/placees/activites/Bonfire and live local music.jpg" alt="">
+            <img src="{% static 'assets/images/placees/activites/Bonfire and live local music.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Sunset & Dinner in Desert</h3>
                 <p> Cap off a busy day of sightseeing with a romantic sunset dinner in the Agafay Desert on this tour from Marrakech.</p>
@@ -543,7 +544,7 @@
         </div>
 
         <div class="box">
-            <img src="images//placees/activites/camel ride.jpg" alt="">
+            <img src="{% static 'assets/images//placees/activites/camel ride.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Agafay Camel Ride</h3>
                 <p>The camel, known as the 'ship of the desert' provides us with a relaxing way to enjoy the peace of the Marrakech desert.</p>
@@ -559,7 +560,7 @@
         </div>
 
         <div class="box">
-            <img src="images//placees/activites/Take a pottery class.jpg" alt="">
+            <img src="{% static 'assets/images//placees/activites/Take a pottery class.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Atelier Lamsaty</h3>
                 <p>Atelier Lamsaty offers for children and adults two creative activities: pottery and sewing workshop.</p>
@@ -575,7 +576,7 @@
         </div>
 
         <div class="box">
-            <img src="images//placees/activites/Moroccan Cooking Class.jpg" alt="">
+            <img src="{% static 'assets/images//placees/activites/Moroccan Cooking Class.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Moroccan Cooking Class</h3>
                 <p>cooking class in Marrakesh. Improve your cooking skills as you learn to cook in an authentic way and enjoy all the food made during class.</p>
@@ -591,7 +592,7 @@
         </div>
 
         <div class="box">
-            <img src="images//placees/activites/Quad Bike.jpg" alt="">
+            <img src="{% static 'assets/images//placees/activites/Quad Bike.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Quad Bike</h3>
                 <p>Experience the Agafay Desert at night on a tour with round-trip hotel transfers from Marrakech. Glide through the desert on a quad bike.</p>
@@ -607,7 +608,7 @@
         </div>
 
         <div class="box">
-            <img src="images//placees/activites/Hot air balloon flight.jpg" alt="">
+            <img src="{% static 'assets/images//placees/activites/Hot air balloon flight.jpg' %}" alt="">
             <div class="content">
                 <h3> <i class="fas fa-map-marker-alt"></i> Hot Air Balloon</h3>
                 <p>Enjoy the best hot air balloon experience in your life and see the sunrise over atlas Mountains of Marrakesh, a moment that you will never forget.</p>
@@ -650,7 +651,7 @@
 
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic1.png" alt="">
+                    <img src="{% static 'assets/images/pic1.png' %}" alt="">
                     <h3>john deo</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
                     <div class="stars">
@@ -664,7 +665,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic2.png" alt="">
+                    <img src="{% static 'assets/images/pic2.png' %}" alt="">
                     <h3>john deo</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
                     <div class="stars">
@@ -678,7 +679,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic3.png" alt="">
+                    <img src="{% static 'assets/images/pic3.png' %}" alt="">
                     <h3>john deo</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
                     <div class="stars">
@@ -692,7 +693,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic4.png" alt="">
+                    <img src="{% static 'assets/images/pic4.png' %}" alt="">
                     <h3>john deo</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
                     <div class="stars">
@@ -737,7 +738,7 @@
               <message-container>
                 <input id="input-field" type="text" placeholder="Type your message here">
                 <button id="submit-button" type="submit">
-                  <img class="send-icon" src="send-message.png" alt="">
+                  <img class="send-icon" src="{% static 'assets/send-message.png' %}" alt="">
                 </button>
               </message-container>
                 
@@ -746,7 +747,7 @@
 
     </div>
 
-    <script src="js/chatbot.js"></script>
+    <script src="{% static 'assets/js/chatbot.js' %}"></script>
     <br>
     <br>
     <br>
@@ -787,7 +788,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
-<script src="js/script.js"></script>
+<script src="{% static 'assets/js/script.js' %}"></script>
 
 </body>
 </html>
