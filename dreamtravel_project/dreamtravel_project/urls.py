@@ -20,5 +20,6 @@ from app_siteweb.views import index
 #.views.py import index
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",index),
+    path("", include ("app_siteweb.urls"))
+   # path("",index)
 ]
