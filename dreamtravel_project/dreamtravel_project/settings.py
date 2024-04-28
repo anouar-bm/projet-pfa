@@ -139,5 +139,5 @@ jazzmin_settings = {
     'site_brand': "DreamTravel brand",
     'site_coopyright': "DreamTravel.com",
     'site_title': "DreamTravel_title",
-    'site_logo': "static/assets/images/logo.webp",
+    'site_logo': "static\assets\images\admin\logo.png",
 }
