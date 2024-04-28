@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +134,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+jazzmin_settings = {
+    'site_header': "DreamTravel header",
+    'site_brand': "DreamTravel brand",
+    'site_coopyright': "DreamTravel.com",
+    'site_title': "DreamTravel_title",
+    'site_logo': "static/assets/images/logo.webp",
+}
