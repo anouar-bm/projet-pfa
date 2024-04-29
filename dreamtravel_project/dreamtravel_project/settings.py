@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #custom app
-    'app_siteweb',
+    'app_siteweb','user_app',
 ]
 
 MIDDLEWARE = [

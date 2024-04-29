@@ -5,3 +5,7 @@ app_name = 'app_siteweb'
 urlpatterns = [
     path("", index),
 ]
+
+#from app_siteweb import views
+#  path("", views.index),
+    
