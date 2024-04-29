@@ -142,4 +142,4 @@ jazzmin_settings = {
   'site_logo': "static/assets/images/admin/logo.png",  # Utilisez des barres obliques
 }
 
-AUTH_user_model = 'app_siteweb.Admin'
+AUTH_user_model = 'app_siteweb.Client'

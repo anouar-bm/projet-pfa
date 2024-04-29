@@ -2,17 +2,21 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractBaseUser
+from django.utils.html import mark_safe
 
 class Admin(AbstractBaseUser):
     email = models.EmailField(_('email address'), unique=True)
     password = models.CharField(_('password'), max_length=128)
     username = models.CharField(_('username'), max_length=150, unique=True)
-    username_field = 'email'
+    username_field = "email"
     REQUIRED_FIELDS = ['username']
     def __str__(self):
-        return self.email
+        return self.username
     class Meta:
         db_table = 'admin'
+def upload_to(instance, filename):
+    return 'client_photos/{filename}'.format(instance.client.id, filename)
+
 
 #class Client(abstractBaseUser):
 class Client(models.Model):
@@ -24,6 +28,9 @@ class Client(models.Model):
     USERNAME_FIELD = 'email'
     def __str__(self):
         return self.email
+    def image_client(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' % self.photo.url)
+
     class Meta:
         db_table = 'client'
 
