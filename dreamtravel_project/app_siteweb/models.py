@@ -3,6 +3,11 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.html import mark_safe
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+
+def user_directory_path(instance, filename):
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 class Admin(AbstractBaseUser):
     email = models.EmailField(_('email address'), unique=True)
@@ -14,6 +19,7 @@ class Admin(AbstractBaseUser):
         return self.username
     class Meta:
         db_table = 'admin'
+
 def upload_to(instance, filename):
     return 'client_photos/{filename}'.format(instance.client.id, filename)
 
@@ -27,9 +33,9 @@ class Client(models.Model):
     photo = models.ImageField(upload_to='client_photos/', default='https://static.vecteezy.com/ti/vecteur-libre/p3/7296447-icone-utilisateur-dans-le-style-plat-icone-personne-symbole-client-vectoriel.jpg')
     USERNAME_FIELD = 'email'
     def __str__(self):
-        return self.email
+        return self.prenom
     def image_client(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % self.photo.url)
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.photo.url))
 
     class Meta:
         db_table = 'client'
@@ -39,6 +45,16 @@ class Like(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         db_table = 'like'
+
+class Rating(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Relation avec le client
+    stars = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],  # Entre 1 et 5 étoiles
+    )
+    created_at = models.DateTimeField(auto_now_add=True)  # Date de création
+
+    class Meta:
+        db_table = 'rating'  # Nom de la table dans la base de données
 
 class Review(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -53,9 +69,15 @@ class Image(models.Model):
 class Ville(models.Model):
     nom = models.CharField(max_length=100)
     description = models.TextField()
+    # image = models.ImageField(upload_to='villes/', blank=True, null=True)
     image = models.ImageField(upload_to='villes/', blank=True, null=True)
+
     class Meta:
         db_table = 'ville'
+    def image_ville(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.photo.url))
+    def __str__(self):
+        return self.nom
 
 class PlaceTouristique(models.Model):
     nom = models.CharField(max_length=100)

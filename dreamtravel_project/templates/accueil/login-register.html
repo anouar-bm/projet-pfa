@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{% static "/assets/css/login-register.css" %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  <!-- Lien CSS pour Bootstrap -->
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  <!-- jQuery est requis par Bootstrap -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  <!-- Lien JS pour Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  <!-- jQuery est requis par Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  <!-- Lien JS pour Bootstrap -->
 
 
     <title>Authentification</title>
@@ -35,7 +34,11 @@
                          </div>
                      {% endfor %}
                 {% endif %}
-
+                <script>
+                    setTimeout(() => {  
+                        $('.alert').alert('close');
+                    }, 5000);  // Délai de 3 secondes
+                </script>
                 {% comment %} 
                 essai
                 <div class="alert alert-success">
@@ -64,6 +67,11 @@
                          </div>
                      {% endfor %}
                 {% endif %}
+                <script>
+                    setTimeout(() => {  
+                        $('.alert').alert('close');
+                    }, 3000);  // Délai de 3 secondes
+                </script>
                 {% comment %} <div class="alert alert-success">
                     Opération réussie !  <!-- Message de succès -->
                 </div>
@@ -71,7 +79,7 @@
                 <div class="alert alert-danger">
                     Erreur lors de l'opération !  <!-- Message d'erreur -->
                 </div> {% endcomment %}
-                            
+
                 <button>Sign In</button>
             </form>
         </div>
