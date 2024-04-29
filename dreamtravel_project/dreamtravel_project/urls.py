@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app_siteweb.views import index
+from app_siteweb.views import index, login
 
 # from django.urls import settings
 from django.conf import settings
@@ -26,7 +26,9 @@ from django.conf.urls.static import static
 #.views.py import index
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include ("app_siteweb.urls"))
+    path("login_register/",login),  # Maps to your login_register view
+    path("", include ("app_siteweb.urls")),
+    #path("login_register/",include("app_siteweb.urls")),
    # path("",index)
 ]
 if settings.DEBUG:
