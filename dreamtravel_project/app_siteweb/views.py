@@ -7,5 +7,8 @@ def index(request):
 def login(request):
     return render(request, 'accueil/login-register.html')
 
+def Atlas(request):
+    return render(request, 'accueil/atlass.html')
+
 
 # Create your views here.

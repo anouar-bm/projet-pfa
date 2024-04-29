@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Card/Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "/assets/css/mamounia.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  </head>
+  <body>
+    
+    <div class = "card-wrapper">
+      <div class = "card">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+              <img src = "{% static 'assets/images/mamounia/1.jpg' %}" alt = "shoe image">
+              <img src = "{% static 'assets/images/mamounia/2.jpg' %}" alt = "shoe image">
+              <img src = "{% static 'assets/images/mamounia/3.jpg' %}" alt = "shoe image">
+              <img src = "{% static 'assets/images/mamounia/4.jpg' %}" alt = "shoe image">
+            </div>
+          </div>
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+                <img src = "{% static 'assets/imagesmamounia/1.jpg' %}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                <img src = "{% static 'assets/images/mamounia/2.jpg' %}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                <img src = "{% static 'assets/images/mamounia/3.jpg' %}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                <img src = "{% static 'assets/images/mamounia/4.jpg' %}" alt = "shoe image">
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title"> Hotel La Mamounia </h2>
+          <a href = "https://shorturl.at/afS09" class = "product-link">For Booking </a>
+          <div class = "product-rating">
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <span>5(21)</span>
+          </div>
+
+          <div class = "product-price">
+            <p class = "last-price">Old Price: <span>$150.00</span></p>
+            <p class = "new-price">New Price: <span>$120.00 (5%)</span></p>
+          </div>
+
+          <div class = "product-detail">
+            <h2>about this item: </h2>
+            
+            <p>La Mamounia, A Symbol Of Traditional Moroccan Hospitality, Nestled In A 17 Acre Park, La Mamounia Will Remain The Place For Worldwide Celebrities.</p> <br>
+            
+          </div>
+
+          
+
+          <div class = "social-links">
+
+          <a href = "#">
+              <i class = "fab fa-facebook-f"></i><br>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-twitter"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-instagram"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-whatsapp"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="{% static 'assets/js/mamounia.js' %}"></script>
+  </body>
+</html>
