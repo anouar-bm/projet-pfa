@@ -1,13 +1,18 @@
 from django.contrib import admin
 from app_siteweb.models import *
 # Register your models here.
-# class ClientAdmin(Client.Clientadmin):
-#   list_display = ('nom', 'prenom', 'email', 'photo')
+
+class HotelAdmin(admin.ModelAdmin):
+    list_display = ('emplacement', 'num_telephone', 'prix', 'promo', 'calculate_total_price_with_promotion')
+    list_filter = ('emplacement', 'promo')
+    search_fields = ('emplacement', 'num_tel')
+# Enregistrer le modèle avec la classe `ModelAdmin`
+admin.site.register(Hotel, HotelAdmin)
+
 admin.site.register(Client)
 admin.site.register(Ville)
 admin.site.register(PlaceTouristique)
 admin.site.register(Restaurant)
-admin.site.register(Hotel)
 admin.site.register(Activite)
 admin.site.register(Like)
 admin.site.register(Review)

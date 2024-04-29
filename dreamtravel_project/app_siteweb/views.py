@@ -8,10 +8,9 @@ def index(request):
 def login(request):
     return render(request, 'accueil/login-register.html')
 
-def dict_hotels(request):
-    hotels = Hotel.objects.all()
-
-    return render(request, 'accueil/hotels.html', {'hotel': hotels})
+def list_hotels(request):
+    hotels = Hotel.objects.all()  # Obtenez tous les hôtels
+    return render(request, 'hotel_list.html', {'hotels': hotels})  # Rendre le template avec les hôtels
 
 def Atlas(request):
     return render(request, 'accueil/atlass.html')

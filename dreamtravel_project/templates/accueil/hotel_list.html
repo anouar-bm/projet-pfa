@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block content_hotel %}
+<section class="packages" id="packages">
+    <h1 class="heading">
+        <span>H</span>
+        <span>O</span>
+        <span>T</span>
+        <span>E</span>
+        <span>L</span>
+        <span>S</span>
+    </h1>
+
+    <div class="box-container">
+        {% for hotel in hotels %}
+        <div class="box">
+            {% with hotel.photos.first as photo %}
+                {% if photo %}
+                    <img src="{{ photo.image.url }}" alt="{{ hotel.nom }}">
+                {% else %}
+                    <img src="{% static 'assets/images/placeholder.png' %}" alt="No image">
+                {% endif %}
+            {% endwith %}
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> {{ hotel.nom }}</h3>
+                <p>{{ hotel.description }}</p>
+                <div class="stars">
+                    {% with num_stars=hotel.average_rating|floatformat:0|int %}
+                        {% for _ in range(num_stars) %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %}
+                        {% for _ in range(5 - num_stars) %}
+                            <i class="far fa-star"></i>
+                        {% endwith %}
+                </div>
+                <div class="price">{{ hotel.calculate_total_price_with_promotion }} MAD
+                    {% if hotel.promo > 0 %}
+                        <span>{{ hotel.prix }} MAD</span>
+                    {% endif %}
+                </div>
+                <a href="#" class="btn">book now</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content_hotel %} 

@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{% static "/assets/css/style.css" %}">
     <link rel="stylesheet" href="{% static "/assets/css/chabot.css" %}">
 
-
 </head>
 <body>
     
@@ -265,7 +264,7 @@
     </div>
 
 </section>
-
+{% comment %} {% block content_hotel %}{% endblock content_hotel %}  {% endcomment %}
 <section class="packages" id="packages">
 
     <h1 class="heading">
@@ -739,7 +738,7 @@
               <message-container>
                 <input id="input-field" type="text" placeholder="Type your message here">
                 <button id="submit-button" type="submit">
-                  <img class="send-icon" src="{% static 'assets/send-message.png' %}" alt="">
+                    <img class="send-icon" src="{% static 'static/assets/images/send-message.png' %}" alt="Send Message Icon">  
                 </button>
               </message-container>
                 

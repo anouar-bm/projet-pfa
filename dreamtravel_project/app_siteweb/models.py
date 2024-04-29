@@ -113,8 +113,10 @@ class Activite(models.Model):
         db_table = 'activite'
 
 class Hotel(models.Model):
+    nom = models.CharField(max_length=25, default='Nom d\'hôtel inconnu')  # Ajout du champ nom
     emplacement = models.CharField(max_length=255)
-    num_tel = models.CharField(max_length=15, validators=[RegexValidator(regex=r'^\+212\d{9}$', message="Le numéro de téléphone doit commencer par +212")], help_text="Le numéro de téléphone doit commencer par +212")
+    description = models.TextField(default='Aucune description fournie')  # Ajout du champ avec valeur par défaut
+    num_telephone = models.CharField(max_length=15, default='+212000000000', validators=[RegexValidator(regex=r'^\+212\d{9}$')])
     prix = models.DecimalField(max_digits=10, decimal_places=2)
     promo = models.DecimalField(max_digits=5, decimal_places=2, default=0)  # DecimalField for promo percentage
     photos = models.ManyToManyField('Image', related_name='hotels')
@@ -124,8 +126,8 @@ class Hotel(models.Model):
         db_table = 'hotel'
 
     def calculate_total_price_with_promotion(self):
-     
-        discounted_price = self.prix * (1 - self.promo / 100)  # Calculate discounted price based on promo percentage
-        return discounted_price
-    
+        if self.promo and self.promo > 0:
+            discounted_price = self.prix * (1 - self.promo / 100)
+            return discounted_price
+        return self.prix
 
