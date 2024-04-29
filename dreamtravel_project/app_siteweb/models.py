@@ -1,20 +1,29 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import AbstractBaseUser
 
-class Admin(models.Model):
+class Admin(AbstractBaseUser):
     email = models.EmailField(_('email address'), unique=True)
     password = models.CharField(_('password'), max_length=128)
     username = models.CharField(_('username'), max_length=150, unique=True)
+    username_field = 'email'
+    REQUIRED_FIELDS = ['username']
+    def __str__(self):
+        return self.email
     class Meta:
         db_table = 'admin'
 
+#class Client(abstractBaseUser):
 class Client(models.Model):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
     photo = models.ImageField(upload_to='client_photos/', default='https://static.vecteezy.com/ti/vecteur-libre/p3/7296447-icone-utilisateur-dans-le-style-plat-icone-personne-symbole-client-vectoriel.jpg')
+    USERNAME_FIELD = 'email'
+    def __str__(self):
+        return self.email
     class Meta:
         db_table = 'client'
 
