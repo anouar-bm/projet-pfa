@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="{% static "/assets/css/style.css" %}">
-    <link rel="stylesheet" href="{% static "/assets/css/chabot.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+    {% comment %} <link rel="stylesheet" href="{% static "/assets/css/chabot.css" %}"> {% endcomment %}
 
 </head>
 <body>
@@ -738,7 +738,7 @@
               <message-container>
                 <input id="input-field" type="text" placeholder="Type your message here">
                 <button id="submit-button" type="submit">
-                    <img class="send-icon" src="{% static 'static/assets/images/send-message.png' %}" alt="Send Message Icon">  
+                    <img class="send-icon" src="{% static 'assets/images/send-message.png' %}" alt="Send Message Icon">  
                 </button>
               </message-container>
                 
