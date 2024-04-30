@@ -1,83 +1,69 @@
-{% load static %}
+{% extends "accueil/base1.html" %} {% load static %}
+<!-- Load the 'static' tag -->
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{{ restaurant.nom }} - Restaurant Details</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{% static 'assets/css/place.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="card-wrapper">
-      <div class="card">
-        <!-- Left: Images Section -->
-        <div class="product-imgs">
-          <div class="img-display">
-            <div class="img-showcase">
-              <!-- Display all images for the restaurant -->
-              {% for image in restaurant.images.all %}
-              <img
-                src="{{ image.image.url }}"
-                alt="{{ restaurant.nom }} image"
-              />
-              {% endfor %}
-            </div>
-          </div>
-          <div class="img-select">
-            <!-- Display selectable thumbnails -->
-            {% for image in restaurant.images.all %}
-            <div class="img-item">
-              <a href="#" data-id="{{ forloop.counter }}">
-                <img
-                  src="{{ image.image.url }}"
-                  alt="{{ restaurant.nom }} thumbnail"
-                />
-              </a>
-            </div>
-            {% endfor %}
-          </div>
+{% block extra_css %}
+<!-- Additional CSS specific to this template -->
+<link rel="stylesheet" href="{% static 'assets/css/place.css' %}" />
+{% endblock %} {% block content %}
+<div class="card-wrapper">
+  <div class="card">
+    <!-- Left: Images Section -->
+    <div class="product-imgs">
+      <div class="img-display">
+        <div class="img-showcase">
+          <!-- Display all images for the restaurant -->
+          {% for image in restaurant.images.all %}
+          <img src="{{ image.image.url }}" alt="{{ restaurant.nom }} image" />
+          {% endfor %}
         </div>
-
-        <!-- Right: Content Section -->
-        <div class="product-content">
-          <h2 class="product-title">{{ restaurant.nom }}</h2>
-
-          <div class="product-rating">
-            <!-- Show star rating -->
-            {% for _ in restaurant.rate_range %}
-            <i class="fas fa-star"></i>
-            {% endfor %} {% for _ in restaurant.neg_rate_range %}
-            <i class="far fa-star"></i>
-            {% endfor %}
-            <!-- Display the rating count -->
-            <span
-              >{{ restaurant.rating }} ({{ restaurant.reviews.count }})</span
-            >
-          </div>
-
-          <div class="product-detail">
-            <h2>About This Restaurant:</h2>
-            <p>{{ restaurant.description }}</p>
-          </div>
-
-          <div class="social-links">
-            <!-- Social media links -->
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
-          </div>
+      </div>
+      <div class="img-select">
+        <!-- Display selectable thumbnails -->
+        {% for image in restaurant.images.all %}
+        <div class="img-item">
+          <a href="#" data-id="{{ forloop.counter }}">
+            <img
+              src="{{ image.image.url }}"
+              alt="{{ restaurant.nom }} thumbnail"
+            />
+          </a>
         </div>
+        {% endfor %}
       </div>
     </div>
 
-    <script src="{% static 'assets/js/place.js' %}"></script>
-    <!-- JavaScript for handling images -->
-  </body>
-</html>
+    <!-- Right: Content Section -->
+    <div class="product-content">
+      <h2 class="product-title">{{ restaurant.nom }}</h2>
+
+      <!-- Display star rating -->
+      <div class="product-rating">
+        {% for _ in restaurant.rate_range %}
+        <i class="fas fa-star"></i>
+        {% endfor %} {% for _ in restaurant.neg_rate_range %}
+        <i class="far fa-star"></i>
+        {% endfor %}
+        <!-- Display the rating count -->
+        <span>{{ restaurant.rating }} ({{ restaurant.reviews.count }})</span>
+      </div>
+
+      <!-- Description section -->
+      <div class="product-detail">
+        <h2>About This Restaurant:</h2>
+        <p>{{ restaurant.description }}</p>
+      </div>
+
+      <!-- Social media links -->
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'assets/js/place.js' %}"></script>
+
+{% endblock %}

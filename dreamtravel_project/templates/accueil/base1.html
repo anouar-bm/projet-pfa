@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Site Title{% endblock %}</title>
+
+    <!-- Include common CSS files -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+
+    <!-- Block for additional CSS -->
+    {% block extra_css %} {% endblock %}
+  </head>
+  <body>
+    <header>
+      <div id="menu-bar" class="fas fa-bars"></div>
+      <a href="#" class="logo"><span>Dream</span>Travel</a>
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#gallery">Places</a>
+        <a href="#services">Services</a>
+        <a href="#review">Review</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Block for main content -->
+    {% block content %} {% endblock %}
+
+    <!-- Include common JavaScript files -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- Block for additional JavaScript -->
+    {% block extra_js %} {% endblock %}
+  </body>
+</html>

@@ -29,15 +29,31 @@ img {
   min-width: 100%;
 }
 .img-select {
-  display: flex;
+  display: flex; /* Enable flexbox layout for easy alignment */
+  justify-content: space-between; /* Evenly distribute the space */
+  flex-wrap: nowrap; /* Prevent wrapping if you want all elements on the same line */
 }
+
 .img-item {
-  margin: 0.3rem;
+  width: 100px; /* Set a consistent width */
+  height: 100px; /* Set a consistent height */
+  margin: 5px; /* Ensure consistent spacing between items */
 }
-.img-item:nth-child(1),
-.img-item:nth-child(2),
-.img-item:nth-child(3) {
-  margin-right: 0;
+
+.img-item img {
+  width: 100%; /* Ensure the image fills the parent */
+  height: 100%; /* Maintain the consistent height */
+  object-fit: cover; /* Ensure the image covers the space without distortion */
+  border-radius: 5px; /* Optional: Add a border-radius for a cleaner look */
+}
+
+.img-item a {
+  display: block; /* Ensure full link coverage */
+  height: 100%; /* Full height of the container */
+}
+
+.img-item:not(:last-child) {
+  margin-right: 10px; /* Apply right margin except for the last item */
 }
 .img-item:hover {
   opacity: 0.8;
@@ -178,9 +194,16 @@ img {
   border-color: transparent;
   color: #fff;
 }
-
+.card {
+  width: 800px; /* Increased width */
+  border: none;
+  border-radius: 15px;
+  padding: 1.5rem; /* Added padding for internal spacing */
+  margin: 1.5rem auto; /* Center the card with margin */
+}
 @media screen and (min-width: 992px) {
   .card {
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1.5rem;
@@ -193,9 +216,14 @@ img {
   }
   .product-imgs {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center align */
+    justify-content: center; /* Center align */
+    width: 100%; /* Allow the container to take full width */
+    max-width: 800px; /* Set a larger maximum width */
+    padding: 10px; /* Add padding for spacing */
   }
+
   .product-content {
     padding-top: 0;
   }
