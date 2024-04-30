@@ -41,12 +41,17 @@
                         {% endfor %}
                     </div>
                     
-                      
-                <div class="price">{{ hotel.calculate_total_price_with_promotion }} MAD
-                    {% if hotel.promo > 0 %}
-                        <span>{{ hotel.prix }} MAD</span>
-                    {% endif %}
-                </div>
+                    <div class="price">
+                        <i class="fa-solid fa-coins"></i>
+                        {{ hotel.calculate_total_price_with_promotion }} MAD
+                        {% if hotel.promo > 0 %}
+                            <span>
+                               <!--  <i class="fas fa-dollar-sign"></i> Icône du dollar -->
+                                {{ hotel.prix }} MAD
+                            </span>
+                        {% endif %}
+                    </div>
+                    
                 <a href="#" class="btn">book now</a>
             </div>
         </div>

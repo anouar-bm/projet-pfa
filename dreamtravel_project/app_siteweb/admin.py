@@ -26,7 +26,11 @@ class RestaurantAdmin(admin.ModelAdmin):
     list_display = ('nom','description','rating')
     search_fields = ['nom']
 admin.site.register(Restaurant, RestaurantAdmin)
-admin.site.register(Activite)
+
+class ActiviteAdmin(admin.ModelAdmin):
+    list_display = ('nom','description','duree')
+    search_fields = ['nom']
+admin.site.register(Activite, ActiviteAdmin)
 admin.site.register(Like)
 admin.site.register(Review)
 admin.site.register(Image)

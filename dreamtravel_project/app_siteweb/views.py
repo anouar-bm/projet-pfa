@@ -16,7 +16,7 @@ def home_page(request):
     context = {
         'hotels': Hotels,
         'places_touristiques': Place_Touristique,
-        # 'activites': activites,
+        'activites': activites,
         'restaurants': restaurants
     }
     return render(request, 'accueil/home.html', context)

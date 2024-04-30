@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">  <!-- Font Awesome 6 -->
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
@@ -122,14 +122,6 @@
 
 </section>
 
-<!-- book section ends -->
-
-<!-- packages section starts  -->
-
-
-<!-- packages section ends -->
-
-<!-- services section starts  -->
 
 {% block content_place %}
 
@@ -176,11 +168,9 @@
 
 {% include "accueil/hotel_list.html" %} 
 
-{% endblock %}
-
-{% block content_rest %}
-
 {% include "accueil/restaurant_list.html" %} 
+
+{% include "accueil/activite_list.html" %}
 
 {% endblock %}
 

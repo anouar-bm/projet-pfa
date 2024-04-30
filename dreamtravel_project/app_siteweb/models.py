@@ -4,6 +4,8 @@ from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.html import mark_safe
 from django.core.validators import MinValueValidator, MaxValueValidator
+from decimal import Decimal
+
 
 
 def user_directory_path(instance, filename):
@@ -111,15 +113,21 @@ class Activite(models.Model):
     nom = models.CharField(max_length=100)
     description = models.TextField()
     images = models.ManyToManyField(Image, related_name='activites')
-    prix = models.DecimalField(max_digits=10, decimal_places=2)
     duree = models.CharField(max_length=100)
-    emplacement = models.CharField(max_length=255)
-    num_telephone = models.CharField(max_length=15, validators=[RegexValidator(regex=r'^\+212\d{9}$', message="Le numéro de téléphone doit commencer par +212")], help_text="Le numéro de téléphone doit commencer par +212")
+    emplacement = models.CharField(max_length=255,default='pas d\'emplacement fourni')
+    num_telephone = models.CharField(max_length=15,default='+212000000000', validators=[RegexValidator(regex=r'^\+212\d{9}$', message="Le numéro de téléphone doit commencer par +212")], help_text="Le numéro de téléphone doit commencer par +212")
     likes = models.ManyToManyField(Like, related_name='activite_likes', blank=True)
     reviews = models.ManyToManyField(Review, related_name='activite_reviews', blank=True)
-
+    rating = models.FloatField(
+        validators=[MinValueValidator(0), MaxValueValidator(5)],  # Valeurs entre 0 et 5
+        default=0  # Valeur par défaut
+    )
     class Meta:
         db_table = 'activite'
+    def rate_range(self):
+        return range(int(self.rating))
+    def neg_rate_range(self):
+        return range(5 - int(self.rating))
 
 class Hotel(models.Model):
     nom = models.CharField(max_length=25, default='Nom d\'hôtel inconnu')  # Ajout du champ nom
@@ -141,8 +149,8 @@ class Hotel(models.Model):
     def calculate_total_price_with_promotion(self):
         if self.promo and self.promo > 0:
             discounted_price = self.prix * (1 - self.promo / 100)
-            return discounted_price
-        return self.prix
+            return discounted_price.quantize(Decimal('0.01'))
+        return self.prix.quantize(Decimal('0.01'))
     def rate_range(self):
         return range(int(self.rating))
     def neg_rate_range(self):

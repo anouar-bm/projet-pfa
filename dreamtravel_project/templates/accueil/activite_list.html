@@ -1,0 +1,68 @@
+{% load static %}
+
+
+<section class="packages" id="packages">
+
+    <h1 class="heading">
+        <span>A</span>
+        <span>C</span>
+        <span>T</span>
+        <span>I</span>
+        <span>V</span>
+        <span>I</span>
+        <span>T</span>
+        <span>E</span>
+        <span>S</span>
+    </h1>
+
+    <div class="box-container">
+        {%for act in activites %}
+            <div class="box">
+                {% with act.images.first as photo %}
+                    {% if photo %}
+                        <img src="{{ photo.image.url }}" alt="{{ act.nom }}">
+                    {% else %}
+                        <img src="{% static 'assets/images/placeholder.png' %}" alt="No image">
+                    {% endif %}
+                {% endwith %}
+                <div class="content">
+                    <h3><i class="fas fa-map-market-alt"></i> {{ act.nom }}</h3>
+                    <p>{{ act.description }}</p>
+                    {% load custom_filters %}
+                    <div class="stars" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="stars-icons">
+                        {% for _ in act.rate_range %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %}
+                        {% for _ in act.neg_rate_range %}
+                            <i class="far fa-star"></i>
+                        {% endfor %}
+                        </div>
+                        <div class="time-info" style="display: flex; align-items: center;">
+                        <i class="fa-solid fa-clock"></i> <!-- Icône d'horloge -->
+                        <span style="margin-left: 5px; font-weight: bold;">{{act.duree}}</span> 
+                        </div>
+                    </div>
+                    <br>
+                    <a href="#" class="btn">book now</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
