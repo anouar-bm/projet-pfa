@@ -10,8 +10,19 @@ class HotelAdmin(admin.ModelAdmin):
 admin.site.register(Hotel, HotelAdmin)
 
 admin.site.register(Client)
-admin.site.register(Ville)
-admin.site.register(PlaceTouristique)
+
+class villeAdmin(admin.ModelAdmin):
+    list_display = ['nom']
+    search_fields = ['nom']
+admin.site.register(Ville, villeAdmin)
+
+
+class PlaceTouristiqueAdmin(admin.ModelAdmin):
+    list_display = ('nom','description','ville')
+    search_fields = ['nom']
+admin.site.register(PlaceTouristique, PlaceTouristiqueAdmin)
+
+
 admin.site.register(Restaurant)
 admin.site.register(Activite)
 admin.site.register(Like)

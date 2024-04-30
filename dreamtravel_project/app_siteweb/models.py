@@ -46,15 +46,15 @@ class Like(models.Model):
     class Meta:
         db_table = 'like'
 
-class Rating(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Relation avec le client
-    stars = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)],  # Entre 1 et 5 étoiles
-    )
-    created_at = models.DateTimeField(auto_now_add=True)  # Date de création
+# class Rating(models.Model):
+#     client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Relation avec le client
+#     stars = models.IntegerField(
+#         validators=[MinValueValidator(1), MaxValueValidator(5)],  # Entre 1 et 5 étoiles
+#     )
+#     created_at = models.DateTimeField(auto_now_add=True)  # Date de création
 
-    class Meta:
-        db_table = 'rating'  # Nom de la table dans la base de données
+#     class Meta:
+#         db_table = 'rating'  # Nom de la table dans la base de données
 
 class Review(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -68,14 +68,14 @@ class Image(models.Model):
 
 class Ville(models.Model):
     nom = models.CharField(max_length=100)
-    description = models.TextField()
+    # description = models.TextField()
     # image = models.ImageField(upload_to='villes/', blank=True, null=True)
-    image = models.ImageField(upload_to='villes/', blank=True, null=True)
+    # image = models.ImageField(upload_to='villes/', blank=True, null=True)
 
     class Meta:
         db_table = 'ville'
-    def image_ville(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.photo.url))
+    # def image_ville(self):
+    #     return mark_safe('<img src="%s" width="50" height="50" />' % (self.photo.url))
     def __str__(self):
         return self.nom
 
@@ -87,7 +87,9 @@ class PlaceTouristique(models.Model):
 
     class Meta:
         db_table = 'place_touristique'
-
+    def __str__(self):
+        return self.nom
+    
 class Restaurant(models.Model):
     nom = models.CharField(max_length=100)
     description = models.TextField()

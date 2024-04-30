@@ -131,85 +131,11 @@
 
 <!-- services section starts  -->
 
-<section class="gallery" id="gallery">
+{% block content_place %}
 
-    <h1 class="heading">
-        <span>p</span>
-        <span>l</span>
-        <span>a</span>
-        <span>c</span>
-        <span>e</span>
-        <span>s</span>
-    </h1>
+{% include "accueil/place_list.html" %} 
 
-    <div class="box-container">
-
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/jamaa.jpg' %}" alt="">
-            <div class="content">
-                <h3>Jemaa el-Fnaa</h3>
-                <p>is a bustling square and renowned market in the medina quarter of Marrakesh's old city.</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/Jardin Majorelle.jpg' %}" alt="">
-            <div class="content">
-                <h3>Jardin Majorelle</h3>
-                <p>The Jardin Majorelle, is one of the most captivating botanical gardens in Morocco.</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/agafay desert.webp' %}" alt="">
-            <div class="content">
-                <h3>Agafay Desert</h3>
-                <p>The Agafay Desert,is a unique and captivating desert landscape located near Marrakech</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/Bahia Palace3.jpg' %}" alt="">
-            <div class="content">
-                <h3>Bahia Palace</h3>
-                <p>Bahia Palace is a magnificent architectural gem located in Marrakesh, Morocco. Known for its exquisite design</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/koutoubia.jpg' %}" alt="">
-            <div class="content">
-                <h3>Koutoubia Mosque</h3>
-                <p>The Kutubiyya Mosque, also known as the Koutoubia Mosque, is an iconic symbol of Marrakech</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/benyoussef.jpeg' %}" alt="">
-            <div class="content">
-                <h3>Ben Youssef Madrasa</h3>
-                <p>is a historical Islamic school located in Marrakech, Morocco</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/Dar_El_Bacha_Thami_EL_Glaoui.jpg' %}" alt="">
-            <div class="content">
-                <h3>Dar El Bacha Museum</h3>
-                <p>is a captivating cultural institution that offers a glimpse into the rich history and heritage of Morocco</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/visiter-musee-marrakech.jpg' %}" alt="">
-            <div class="content">
-                <h3>Musée de Marrakech</h3>
-                <p>The Musée de Marrakech exhibits a collection of Moroccan art forms within the decadent salons of the Mnebhi Palace</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'assets/images/imgs/ks .jpg' %}" alt="">
-            <div class="content">
-                
-            </div>
-        </div>
-
-    </div>
-
-</section>
+{% endblock %}
 
 <section class="services" id="services">
 

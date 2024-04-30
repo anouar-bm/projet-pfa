@@ -1,0 +1,31 @@
+{% load static %}
+
+<section class="gallery" id="gallery">
+
+    <h1 class="heading">
+        <span>p</span>
+        <span>l</span>
+        <span>a</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+        {% for place in  places_touristiques %}
+        <div class="box">
+            {% with place.image as photo %}
+                {% if place.image %}
+                    <img src="{{ place.image.url }}" alt="{{ place.nom }}">
+                {% else %}
+                    <img src="{% static 'assets/images/placeholder.png' %}" alt="Image not available">
+                {% endif %}
+            {% endwith %}
+            <div class="content">
+                <h3>{{ place.nom }}</h3>
+                <p>{{ place.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
