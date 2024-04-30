@@ -134,12 +134,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 default_auto_field = 'django.db.models.BigAutoField'
 
-jazzmin_settings = {
+JAZZMIN_SETTINGS = {
   'site_header': "DreamTravel header",
-  'site_brand': "DreamTravel brand",
-  'site_copyright': "DreamTravel.com", 
+  'site_brand': "DreamTravel admin",
+  'copyright': "DreamTravel.com", 
   'site_title': "DreamTravel_title",
-  'site_logo': "static/assets/images/admin/logo.png",  # Utilisez des barres obliques
+  'site_logo': "assets/images/admin/logo.jpg",  
+    'welcome_sign': "Welcome to DreamTravel",
+    'show_ui_builder': True,
+    
 }
 
 AUTH_user_model = 'app_siteweb.Client'

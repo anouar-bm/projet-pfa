@@ -30,6 +30,7 @@ admin.site.register(Restaurant, RestaurantAdmin)
 class ActiviteAdmin(admin.ModelAdmin):
     list_display = ('nom','description','duree')
     search_fields = ['nom']
+
 admin.site.register(Activite, ActiviteAdmin)
 admin.site.register(Like)
 admin.site.register(Review)
