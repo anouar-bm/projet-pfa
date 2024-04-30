@@ -25,13 +25,22 @@
 
                  {% load custom_filters %}
 
-                <div class="stars">
+                {% comment %} <div class="stars">
                     {% for _ in hotel.rating|to_range %}
                         <i class="fas fa-star"></i>
                     {% endfor %}
                     {% for _ in 5|to_range %}
                         <i class="far fa-star"></i>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
+                    <div class="stars">
+                        {% for _ in hotel.rate_range %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %}
+                        {% for _ in hotel.neg_rate_range %}
+                            <i class="far fa-star"></i>
+                        {% endfor %}
+                    </div>
+                    
                       
                 <div class="price">{{ hotel.calculate_total_price_with_promotion }} MAD
                     {% if hotel.promo > 0 %}

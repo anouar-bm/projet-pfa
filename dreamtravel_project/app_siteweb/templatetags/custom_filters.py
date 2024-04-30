@@ -1,3 +1,4 @@
+# custom_filters.py
 from django import template
 
 register = template.Library()
@@ -6,5 +7,5 @@ register = template.Library()
 def to_range(value):
     try:
         return range(int(value))
-    except (ValueError, TypeError):
+    except ValueError:
         return range(0)

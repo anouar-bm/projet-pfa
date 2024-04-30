@@ -136,5 +136,7 @@ class Hotel(models.Model):
         return self.prix
     def rate_range(self):
         return range(int(self.rating))
+    def neg_rate_range(self):
+        return range(5 - int(self.rating))
 
 
