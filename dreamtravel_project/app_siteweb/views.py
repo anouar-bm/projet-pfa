@@ -17,7 +17,7 @@ def home_page(request):
         'hotels': Hotels,
         'places_touristiques': Place_Touristique,
         # 'activites': activites,
-        # 'restaurants': restaurants
+        'restaurants': restaurants
     }
     return render(request, 'accueil/home.html', context)
 

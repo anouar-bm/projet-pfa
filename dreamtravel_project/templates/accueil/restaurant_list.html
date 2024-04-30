@@ -1,0 +1,51 @@
+{% load static %}
+
+
+<section class="packages" id="packages">
+
+    <h1 class="heading">
+        <span>R</span>
+        <span>E</span>
+        <span>S</span>
+        <span>T</span>
+        <span>A</span>
+        <span>U</span>
+        <span>R</span>
+        <span>A</span>
+        <span>N</span>
+        <span>T</span>
+        <span>S</span>
+
+        
+    </h1>
+
+    <div class="box-container">
+        {% for restaurant in restaurants %}
+        <div class="box">
+            {% with restaurant.images.first as photo %}
+                {% if photo %}
+                    <img src="{{ photo.image.url }}" alt="{{ restaurant.nom }}">
+                {% else %}
+                    <img src="{% static 'assets/images/placeholder.png' %}" alt="No image">
+                {% endif %}
+            {% endwith %}
+            <div class="content">
+                <h3><i class="fas fa-map-market-alt"></i> {{ restaurant.nom }}</h3>
+                <br>
+                <p>{{ restaurant.description }}</p>
+                {% load custom_filters %}
+                <div class="stars">
+                    {% for _ in restaurant.rate_range %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                    {% for _ in restaurant.neg_rate_range %}
+                        <i class="far fa-star"></i>
+                    {% endfor %}
+                </div>
+                <br>
+                <a href="#" class="btn">book now</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

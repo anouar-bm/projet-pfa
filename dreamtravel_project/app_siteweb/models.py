@@ -96,9 +96,16 @@ class Restaurant(models.Model):
     images = models.ManyToManyField(Image, related_name='restaurants')
     likes = models.ManyToManyField(Like, related_name='restaurant_likes', blank=True)
     reviews = models.ManyToManyField(Review, related_name='restaurant_reviews', blank=True)
-
+    rating = models.FloatField(
+        validators=[MinValueValidator(0), MaxValueValidator(5)],  # Valeurs entre 0 et 5
+        default=0  # Valeur par défaut
+    )
     class Meta:
         db_table = 'restaurant'
+    def rate_range(self):
+        return range(int(self.rating))
+    def neg_rate_range(self):
+        return range(5 - int(self.rating))
 
 class Activite(models.Model):
     nom = models.CharField(max_length=100)
