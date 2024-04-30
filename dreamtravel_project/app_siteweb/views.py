@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render , get_object_or_404
 from app_siteweb.models import Hotel, PlaceTouristique, Activite, Restaurant
 
 def index(request):
@@ -20,6 +20,23 @@ def home_page(request):
         'restaurants': restaurants
     }
     return render(request, 'accueil/home.html', context)
+
+def essai_hotel(request):
+    return render(request, 'accueil/mamounia.html')
+
+def hotel_detail(request, slug):
+    hotel=get_object_or_404(Hotel, slug=slug)
+    return render(request, 'accueil/hotel_detail.html',context={"hotel":hotel})
+
+def activite_detail(request, slug):
+    activite = get_object_or_404(Activite, slug=slug)
+    return render(request, 'accueil/activite_detail.html',context={"activite":activite})
+    
+def restaurant_detail(request, slug):
+    restaurant = get_object_or_404(Restaurant, slug=slug)
+    return render(request, 'accueil/restaurant_detail.html',context={"restaurant":restaurant})
+
+
 
 # def list_hotels(request):
 #     hotels = Hotel.objects.all()  # Obtenez tous les hôtels

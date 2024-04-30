@@ -14,7 +14,7 @@
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
-    {% comment %} <link rel="stylesheet" href="{% static "/assets/css/chabot.css" %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static "assets/css/chatbot.css" %}">
 
 </head>
 <body>
@@ -172,6 +172,8 @@
 
 {% include "accueil/activite_list.html" %}
 
+{% include "accueil/reviews.html" %}
+
 {% endblock %}
 
 
@@ -212,7 +214,6 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
-<script src="{% static 'assets/js/script.js' %}"></script>
-
+<script src="{% static 'assets/js/script.js' %}"></script> 
 </body>
 </html>

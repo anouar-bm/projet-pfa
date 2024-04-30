@@ -1,10 +1,16 @@
 from django.urls import path
-from app_siteweb.views import index,home_page
+from app_siteweb.views import index,home_page,essai_hotel,hotel_detail,activite_detail,restaurant_detail
 # from app_siteweb import views
 app_name = 'app_siteweb'
 urlpatterns = [
     path("", index),
     path("home", home_page, name='home'),
+
+    path("mamounia", essai_hotel),
+    
+    path('hotel/<str:slug>',hotel_detail,name='hotel-detail'),
+    path('activite/<str:slug>',activite_detail,name='activite-detail'),
+    path('restaurant/<str:slug>',restaurant_detail,name='restaurant-detail'),
 ]
 
 #from app_siteweb import views

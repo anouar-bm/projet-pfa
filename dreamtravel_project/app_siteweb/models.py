@@ -98,6 +98,7 @@ class Restaurant(models.Model):
     images = models.ManyToManyField(Image, related_name='restaurants')
     likes = models.ManyToManyField(Like, related_name='restaurant_likes', blank=True)
     reviews = models.ManyToManyField(Review, related_name='restaurant_reviews', blank=True)
+    slug = models.SlugField(max_length=255,unique=True)
     rating = models.FloatField(
         validators=[MinValueValidator(0), MaxValueValidator(5)],  # Valeurs entre 0 et 5
         default=0  # Valeur par défaut
@@ -118,6 +119,7 @@ class Activite(models.Model):
     num_telephone = models.CharField(max_length=15,default='+212000000000', validators=[RegexValidator(regex=r'^\+212\d{9}$', message="Le numéro de téléphone doit commencer par +212")], help_text="Le numéro de téléphone doit commencer par +212")
     likes = models.ManyToManyField(Like, related_name='activite_likes', blank=True)
     reviews = models.ManyToManyField(Review, related_name='activite_reviews', blank=True)
+    slug = models.SlugField(max_length=255,unique=True)
     rating = models.FloatField(
         validators=[MinValueValidator(0), MaxValueValidator(5)],  # Valeurs entre 0 et 5
         default=0  # Valeur par défaut
@@ -128,6 +130,8 @@ class Activite(models.Model):
         return range(int(self.rating))
     def neg_rate_range(self):
         return range(5 - int(self.rating))
+    def __str__(self):
+        return self.nom
 
 class Hotel(models.Model):
     nom = models.CharField(max_length=25, default='Nom d\'hôtel inconnu')  # Ajout du champ nom
@@ -139,6 +143,7 @@ class Hotel(models.Model):
     photos = models.ManyToManyField('Image', related_name='hotels')
     likes = models.ManyToManyField(Like, related_name='hotel_likes', blank=True)
     reviews = models.ManyToManyField(Review, related_name='hotel_reviews', blank=True)
+    slug = models.SlugField(max_length=255,unique=True)
     rating = models.FloatField(
         validators=[MinValueValidator(0), MaxValueValidator(5)],  # Valeurs entre 0 et 5
         default=0  # Valeur par défaut
