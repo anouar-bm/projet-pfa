@@ -1,6 +1,4 @@
-{% extends "index.html" %}
-
-{% block content_hotel %}
+{% load static %}  <!-- Charger le module pour les fichiers statiques -->
 <section class="packages" id="packages">
     <h1 class="heading">
         <span>H</span>
@@ -22,17 +20,19 @@
                 {% endif %}
             {% endwith %}
             <div class="content">
-                <h3> <i class="fas fa-map-marker-alt"></i> {{ hotel.nom }}</h3>
+                <h3><i class="fas fa-map-marker-alt"></i> {{ hotel.nom }}</h3>
                 <p>{{ hotel.description }}</p>
+
+                 {% load custom_filters %}
+
                 <div class="stars">
-                    {% with num_stars=hotel.average_rating|floatformat:0|int %}
-                        {% for _ in range(num_stars) %}
-                            <i class="fas fa-star"></i>
-                        {% endfor %}
-                        {% for _ in range(5 - num_stars) %}
-                            <i class="far fa-star"></i>
-                        {% endwith %}
-                </div>
+                    {% for _ in hotel.rating|to_range %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                    {% for _ in 5|to_range %}
+                        <i class="far fa-star"></i>
+                    {% endfor %}
+                      
                 <div class="price">{{ hotel.calculate_total_price_with_promotion }} MAD
                     {% if hotel.promo > 0 %}
                         <span>{{ hotel.prix }} MAD</span>
@@ -44,4 +44,3 @@
         {% endfor %}
     </div>
 </section>
-{% endblock content_hotel %} 

@@ -1,0 +1,298 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tourist site web </title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+    {% comment %} <link rel="stylesheet" href="{% static "/assets/css/chabot.css" %}"> {% endcomment %}
+
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo"><span>Dream</span>Travel</a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#gallery">places</a>
+        <a href="#services">services</a>
+        <a href="#review">review</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div class="icons">
+        <a href="user/login_register" class="fas fa-user" id="login-btn"></a>
+    </div>
+
+    <form action="" class="search-bar-container">
+        <input type="search" id="search-bar" placeholder="search here...">
+        <label for="search-bar" class="fas fa-search"></label>
+    </form>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+    </div>
+
+    <div class="controls">
+        <span class="vid-btn active" data-src="{% static 'assets/images/imgs/1.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/3.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/2.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/4.jpg' %}"></span>
+        <span class="vid-btn" data-src="{% static 'assets/images/imgs/5.jpg' %}"></span>
+    </div>
+
+    <div class="video-container">
+        <img src="{% static 'assets/images/imgs/1.jpg' %}" id="video-slider" alt="Image Slider">
+    </div>
+    
+
+</section>
+
+<!-- home section ends -->
+
+<!-- book section starts  -->
+
+<section class="book" id="book">
+
+    <h1 class="heading">
+        <span>D</span>
+        <span>E</span>
+        <span>S</span>
+        <span>T</span>
+        <span>I</span>
+        <span>N</span>
+        <span>A</span>
+        <span>T</span>
+        <span>I</span>
+        <span>O</span>
+        <span>N</span>
+
+
+    </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="{% static 'assets/images/book-img.svg' %}" alt="">
+        </div>
+
+        <form action="">
+            <div class="inputBox">
+                <h3>where to</h3>
+                <input type="text" placeholder="place name">
+            </div>
+            <div class="inputBox">
+                <h3>how many</h3>
+                <input type="number" placeholder="number of guests">
+            </div>
+            <div class="inputBox">
+                <h3>arrivals</h3>
+                <input type="date">
+            </div>
+            <div class="inputBox">
+                <h3>leaving</h3>
+                <input type="date">
+            </div>
+            <input type="submit" class="btn" value="book now">
+        </form>
+
+    </div>
+
+</section>
+
+<!-- book section ends -->
+
+<!-- packages section starts  -->
+
+
+<!-- packages section ends -->
+
+<!-- services section starts  -->
+
+<section class="gallery" id="gallery">
+
+    <h1 class="heading">
+        <span>p</span>
+        <span>l</span>
+        <span>a</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/jamaa.jpg' %}" alt="">
+            <div class="content">
+                <h3>Jemaa el-Fnaa</h3>
+                <p>is a bustling square and renowned market in the medina quarter of Marrakesh's old city.</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/Jardin Majorelle.jpg' %}" alt="">
+            <div class="content">
+                <h3>Jardin Majorelle</h3>
+                <p>The Jardin Majorelle, is one of the most captivating botanical gardens in Morocco.</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/agafay desert.webp' %}" alt="">
+            <div class="content">
+                <h3>Agafay Desert</h3>
+                <p>The Agafay Desert,is a unique and captivating desert landscape located near Marrakech</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/Bahia Palace3.jpg' %}" alt="">
+            <div class="content">
+                <h3>Bahia Palace</h3>
+                <p>Bahia Palace is a magnificent architectural gem located in Marrakesh, Morocco. Known for its exquisite design</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/koutoubia.jpg' %}" alt="">
+            <div class="content">
+                <h3>Koutoubia Mosque</h3>
+                <p>The Kutubiyya Mosque, also known as the Koutoubia Mosque, is an iconic symbol of Marrakech</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/benyoussef.jpeg' %}" alt="">
+            <div class="content">
+                <h3>Ben Youssef Madrasa</h3>
+                <p>is a historical Islamic school located in Marrakech, Morocco</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/Dar_El_Bacha_Thami_EL_Glaoui.jpg' %}" alt="">
+            <div class="content">
+                <h3>Dar El Bacha Museum</h3>
+                <p>is a captivating cultural institution that offers a glimpse into the rich history and heritage of Morocco</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/visiter-musee-marrakech.jpg' %}" alt="">
+            <div class="content">
+                <h3>Musée de Marrakech</h3>
+                <p>The Musée de Marrakech exhibits a collection of Moroccan art forms within the decadent salons of the Mnebhi Palace</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'assets/images/imgs/ks .jpg' %}" alt="">
+            <div class="content">
+                
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="services" id="services">
+
+    <h1 class="heading">
+        <span>s</span>
+        <span>e</span>
+        <span>r</span>
+        <span>v</span>
+        <span>i</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <i class="fas fa-hotel"></i>
+            <h3>affordable hotels</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-utensils"></i>
+            <h3>food and drinks</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-hiking"></i>
+            <h3>adventures</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+
+    </div>
+
+</section>
+
+{% block content %}
+
+{% include "accueil/hotel_list.html" %} 
+
+{% endblock %}
+
+
+
+
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>about us</h3>
+            <p>About any doubt , feel free to contact us and enjoy the beautiful landscape and scenery of North-East India</p>
+        </div>
+        <div class="box">
+            <h3>branch locations</h3>
+            <a href="#">Assam</a>
+            <a href="#">Sikkim</a>
+            <a href="#">Arunachal Pradesh</a>
+            <a href="#">Meghalaya</a>
+        </div>
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#">home</a>
+            <a href="#">book</a>
+            <a href="#">packages</a>
+            <a href="#">services</a>
+            <a href="#">gallery</a>
+            <a href="#">review</a>
+            <a href="#">contact</a>
+        </div>
+        
+
+    </div>
+
+    <h1 class="credit"> <span>|All Right Reserved|</span> </h1>
+
+</section>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+</html>

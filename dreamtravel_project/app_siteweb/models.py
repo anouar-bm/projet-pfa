@@ -122,6 +122,10 @@ class Hotel(models.Model):
     photos = models.ManyToManyField('Image', related_name='hotels')
     likes = models.ManyToManyField(Like, related_name='hotel_likes', blank=True)
     reviews = models.ManyToManyField(Review, related_name='hotel_reviews', blank=True)
+    rating = models.FloatField(
+        validators=[MinValueValidator(0), MaxValueValidator(5)],  # Valeurs entre 0 et 5
+        default=0  # Valeur par défaut
+    )
     class Meta:
         db_table = 'hotel'
 
@@ -130,4 +134,7 @@ class Hotel(models.Model):
             discounted_price = self.prix * (1 - self.promo / 100)
             return discounted_price
         return self.prix
+    def rate_range(self):
+        return range(int(self.rating))
+
 
