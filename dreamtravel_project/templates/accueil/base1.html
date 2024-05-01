@@ -4,19 +4,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>Dream Travel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}Site Title{% endblock %}</title>
-
-    <!-- Include common CSS files -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
 
     <!-- Block for additional CSS -->
     {% block extra_css %} {% endblock %}
@@ -26,22 +20,22 @@
       <div id="menu-bar" class="fas fa-bars"></div>
       <a href="#" class="logo"><span>Dream</span>Travel</a>
       <nav class="navbar">
-        <a href="#home">Home</a>
-        <a href="#gallery">Places</a>
+        <a href="{% url 'app_siteweb:index' %}">Home</a>
+        <a href="{% url 'app_siteweb:places' %}">places</a>
         <a href="#services">Services</a>
         <a href="#review">Review</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <!-- Block for main content -->
-    {% block content %} {% endblock %}
+    <!-- Content block -->
+    {% block content %}
+    <!-- Add your content here -->
+    {% endblock %}
 
-    <!-- Include common JavaScript files -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="{% static 'assets/js/main.js' %}"></script>
-
-    <!-- Block for additional JavaScript -->
-    {% block extra_js %} {% endblock %}
+    <!-- Optional JavaScript block -->
+    {% block extra_js %}
+    <!-- <script src="{% static 'assets/js/custom.js' %}"></script> -->
+    {% endblock %}
   </body>
 </html>

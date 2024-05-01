@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+#from app_siteweb.views import home_page,index
 #from app_siteweb.views import index, login
 
 # from django.urls import settings
@@ -26,7 +27,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("user/",include ("user_app.urls")),
-    path("", include ("app_siteweb.urls")),
+    path("", include("app_siteweb.urls")),  
     #path("login_register/",include("app_siteweb.urls")),
    # path("",index)
 ]

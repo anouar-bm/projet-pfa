@@ -52,7 +52,12 @@
                         {% endif %}
                     </div>
                     
-                <a href="#" class="btn">book now</a>
+                <a
+          href="{% url 'app_siteweb:hotel-detail' slug=hotel.slug %}"
+          class="btn"
+        >
+          Book Now</a
+        >
             </div>
         </div>
         {% endfor %}
