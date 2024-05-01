@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin,AbstractUser
 from django.utils.html import mark_safe
 from django.core.validators import MinValueValidator, MaxValueValidator
 from decimal import Decimal
@@ -11,33 +11,127 @@ from decimal import Decimal
 def user_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.user.id, filename)
 
-class Admin(AbstractBaseUser):
+# class Admin(AbstractBaseUser):
+#     email = models.EmailField(_('email address'), unique=True)
+#     password = models.CharField(_('password'), max_length=128)
+#     username = models.CharField(_('username'), max_length=150, unique=True)
+#     username_field = "email"
+#     REQUIRED_FIELDS = ['username']
+#     def __str__(self):
+#         return self.username
+#     class Meta:
+#         db_table = 'admin'
+
+# def upload_to(instance, filename):
+#     return 'client_photos/{filename}'.format(instance.client.id, filename)
+
+class AdminManager(BaseUserManager):
+    def create_user(self, email, username, password=None):
+        if not email:
+            raise ValueError(_('L\'email doit être défini'))
+        if not username:
+            raise ValueError(_('Le nom d\'utilisateur doit être défini'))
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, username, password):
+        user = self.create_user(email, username, password)
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
+
+class Admin(AbstractBaseUser, PermissionsMixin):
+    # Champs existants
     email = models.EmailField(_('email address'), unique=True)
-    password = models.CharField(_('password'), max_length=128)
     username = models.CharField(_('username'), max_length=150, unique=True)
-    username_field = "email"
+    password = models.CharField(_('password'), max_length=128)
+    is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+
+    # Champs avec related_name
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='admin_user_set',
+        blank=True,
+        help_text=_('Les groupes auxquels cet utilisateur appartient.'),
+        verbose_name=_('groups'),
+    )
+    
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='admin_user_permissions',
+        blank=True,
+        help_text=_('Les permissions spécifiques à cet utilisateur.'),
+        verbose_name=_('user permissions'),
+    )
+    
+    # Manager
+    objects = AdminManager()
+
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
     def __str__(self):
         return self.username
+
     class Meta:
         db_table = 'admin'
-
-def upload_to(instance, filename):
-    return 'client_photos/{filename}'.format(instance.client.id, filename)
-
-
 #class Client(abstractBaseUser):
-class Client(models.Model):
-    nom = models.CharField(max_length=100)
-    prenom = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
-    photo = models.ImageField(upload_to='client_photos/', default='https://static.vecteezy.com/ti/vecteur-libre/p3/7296447-icone-utilisateur-dans-le-style-plat-icone-personne-symbole-client-vectoriel.jpg')
+# class Client(AbstractUser):
+#     nom = models.CharField(max_length=100)
+#     prenom = models.CharField(max_length=100)
+#     photo = models.ImageField(
+#         upload_to='client_photos/', 
+#         default='https://static.vecteezy.com/ti/vecteur-libre/p3/7296447-icone-utilisateur-dans-le-style-plat-icone-personne-symbole-client-vectoriel.jpg'
+#     )
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = ['username']
+
+#     def __str__(self):
+#         return self.prenom
+
+#     def image_client(self):
+#         return mark_safe(f'<img src="{self.photo.url}" width="50" height="50" />')
+
+#     class Meta:
+#         db_table = 'client'
+
+class Client(AbstractUser):
+    
+    # Champs avec related_name
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='client_user_set',
+        blank=True,
+        help_text=_('Les groupes auxquels cet utilisateur appartient.'),
+        verbose_name=_('groups'),
+    )
+    
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='client_user_permissions',
+        blank=True,
+        help_text=_('Les permissions spécifiques à cet utilisateur.'),
+        verbose_name=_('user permissions'),
+    )
+
+    photo = models.ImageField(
+        upload_to='client_photos/', 
+        default='https://static.vecteezy.com/ti/vecteur-libre/p3/7296447-icone-utilisateur-dans-le-style-plat-icone-personne-symbole-client-vectoriel.jpg'
+    )
+    
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
     def __str__(self):
         return self.prenom
+
     def image_client(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.photo.url))
+        return mark_safe(f'<img src="{self.photo.url}" width="50" height="50" />')
 
     class Meta:
         db_table = 'client'
