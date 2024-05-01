@@ -44,15 +44,15 @@ class AdminManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class Admin(AbstractBaseUser, PermissionsMixin):
-    # Champs existants
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(_('username'), max_length=150, unique=True)
     password = models.CharField(_('password'), max_length=128)
     is_staff = models.BooleanField(default=True)
-    is_active = models.BooleanField(default=True)
-
-    # Champs avec related_name
+    is_superuser = models.BooleanField(default=False)  # Default is False for regular users
+    is_active = models.BooleanField(default=True)  # Superutilisateurs doivent être actifs par défaut
+    
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='admin_user_set',
@@ -60,7 +60,7 @@ class Admin(AbstractBaseUser, PermissionsMixin):
         help_text=_('Les groupes auxquels cet utilisateur appartient.'),
         verbose_name=_('groups'),
     )
-    
+
     user_permissions = models.ManyToManyField(
         'auth.Permission',
         related_name='admin_user_permissions',
@@ -68,8 +68,7 @@ class Admin(AbstractBaseUser, PermissionsMixin):
         help_text=_('Les permissions spécifiques à cet utilisateur.'),
         verbose_name=_('user permissions'),
     )
-    
-    # Manager
+
     objects = AdminManager()
 
     USERNAME_FIELD = 'email'
@@ -80,6 +79,8 @@ class Admin(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         db_table = 'admin'
+
+
 #class Client(abstractBaseUser):
 # class Client(AbstractUser):
 #     nom = models.CharField(max_length=100)
