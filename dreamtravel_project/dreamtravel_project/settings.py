@@ -139,7 +139,7 @@ JAZZMIN_SETTINGS = {
   'site_brand': "DreamTravel admin",
   'copyright': "DreamTravel.com", 
   'site_title': "DreamTravel_title",
-  'site_logo': "assets/images/admin/logo.jpg",  
+  'site_logo': "assets/images/admin/logo2.png",  
     'welcome_sign': "Welcome to DreamTravel",
     'show_ui_builder': True,
     

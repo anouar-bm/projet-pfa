@@ -5,6 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 from django.utils.html import mark_safe
 from django.core.validators import MinValueValidator, MaxValueValidator
 from decimal import Decimal
+from django.contrib.auth.models import User
 
 
 
@@ -24,22 +25,6 @@ def user_directory_path(instance, filename):
 
 # def upload_to(instance, filename):
 #     return 'client_photos/{filename}'.format(instance.client.id, filename)
-
-class AdminManager(BaseUserManager):
-    def create_user(self, email, username, password=None):
-        if not email:
-            raise ValueError(_('L\'email doit être défini'))
-        if not username:
-            raise ValueError(_('Le nom d\'utilisateur doit être défini'))
-        email = self.normalize_email(email)
-        user = self.model(email=email, username=username)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    
-
-
 
 #class Client(abstractBaseUser):
 # class Client(AbstractUser):
@@ -61,42 +46,26 @@ class AdminManager(BaseUserManager):
 #     class Meta:
 #         db_table = 'client'
 
-class Client(AbstractUser):
-    
-    # Champs avec related_name
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='client_user_set',
-        blank=True,
-        help_text=_('Les groupes auxquels cet utilisateur appartient.'),
-        verbose_name=_('groups'),
-    )
-    
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='client_user_permissions',
-        blank=True,
-        help_text=_('Les permissions spécifiques à cet utilisateur.'),
-        verbose_name=_('user permissions'),
-    )
-
+class Client(models.Model):
+    # Autres champs pour le client
+    nom = models.CharField(max_length=100)  # Champ de nom pour le client
     photo = models.ImageField(
         upload_to='client_photos/', 
         default='https://static.vecteezy.com/ti/vecteur-libre/p3/7296447-icone-utilisateur-dans-le-style-plat-icone-personne-symbole-client-vectoriel.jpg'
     )
+
+    # Clé étrangère liant à l'utilisateur
+    user = models.ForeignKey(
+        User,  # Le modèle User de Django
+        on_delete=models.CASCADE,  # Si l'utilisateur est supprimé, le client aussi
+        related_name='clients',  # Référence pour accéder aux clients depuis User
+    )
     
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
-
+    # Représentation en chaîne du modèle Client
     def __str__(self):
-        return self.prenom
-
-    def image_client(self):
-        return mark_safe(f'<img src="{self.photo.url}" width="50" height="50" />')
-
-    class Meta:
-        db_table = 'client'
-
+        # Afficher le nom du client et le nom complet de l'utilisateur associé
+        return f"{self.nom} - {self.user.first_name} {self.user.last_name}"
+    
 class Like(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

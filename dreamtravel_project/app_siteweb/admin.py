@@ -9,7 +9,30 @@ class HotelAdmin(admin.ModelAdmin):
 # Enregistrer le modèle avec la classe `ModelAdmin`
 admin.site.register(Hotel, HotelAdmin)
 
-admin.site.register(Client)
+class ClientAdmin(admin.ModelAdmin):
+    # Champs à afficher dans la liste des clients
+    list_display = ('nom', 'user', 'photo', 'user_full_name')
+
+    # Champs cliquables qui mènent à la vue de détail
+    list_display_links = ('nom', 'user')
+
+    # Champs disponibles pour la recherche
+    search_fields = ('nom', 'user__first_name', 'user__last_name')
+
+    # Ajouter des filtres sur le côté de la page d'administration
+    list_filter = ('user',)
+
+    # Définir une méthode pour afficher le nom complet de l'utilisateur
+    def user_full_name(self, obj):
+        return f"{obj.user.first_name} {obj.user.last_name}"
+
+    # Nom de la colonne pour `user_full_name`
+    user_full_name.short_description = 'Nom Complet de l\'Utilisateur'
+
+
+# Enregistrer le modèle Client avec la classe ClientAdmin
+admin.site.register(Client, ClientAdmin)
+
 
 class villeAdmin(admin.ModelAdmin):
     list_display = ['nom']
