@@ -1,15 +1,18 @@
 #contact {  /* Styles pour la section "contact" */
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement si nécessaire */
+  margin: 20px 0; /* Marges pour espacer du reste de la page */
 }
 
 #contact .chatbot-container {
-  width: 500px;
-  margin: 0 auto;
+  width: 90%; /* Utilisation de pourcentage pour plus de largeur */
+  max-width: 1000px; /* Largeur maximale pour les écrans plus grands */
   background-color: #f5f5f5;
   border: 1px solid #cccccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Ajout de padding */
 }
 
 #contact #chatbot {
@@ -17,6 +20,7 @@
   border: 1px solid #eef1f5;
   border-radius: 4px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Ajout de padding */
 }
 
 #contact #header {
@@ -24,6 +28,8 @@
   color: #ffffff;
   padding: 20px;
   font-size: 1em;
+  border-radius: 4px 4px 0 0; /* Coins arrondis en haut */
+  text-align: center; /* Centrer le texte */
 }
 
 #contact .chatbot-message {
@@ -31,21 +37,24 @@
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px; /* Espacement entre les messages */
 }
 
 #contact #input-form {
   display: flex;
   align-items: center;
   border-top: 1px solid #eef1f5;
-}
-
-#contact #input-field {
-  flex: 1;
-  border: none;
-  background: #ffffff;
   padding: 10px;
 }
 
+#contact #input-field {
+  flex: 1; /* Pour que le champ prenne tout l'espace disponible */
+  border: none;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 4px; /* Coins arrondis */
+}
+
 #contact .send-icon {
-  margin-right: 10px;
+  margin-right: 10px; /* Espacement entre le bouton et le champ */
 }
