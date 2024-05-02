@@ -144,5 +144,8 @@ JAZZMIN_SETTINGS = {
     'show_ui_builder': True,
     
 }
+LOGIN_URL = 'user_app:login'
+LOGIN_REDIRECT_URL = 'app_siteweb:index'
+LOGOUT_REDIRECT_URL = 'app_siteweb:places'
 
-AUTH_user_model = 'app_siteweb.Client'
+# AUTH_user_model = 'app_siteweb.Client'

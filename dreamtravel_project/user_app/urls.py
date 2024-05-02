@@ -1,7 +1,13 @@
+from django.contrib.auth import views as auth_views
 from django.urls import path
-from user_app.views import login
-# from app_siteweb import views
+
+from . import views
+from .forms import LoginForm
+
 app_name = 'user_app'
+
 urlpatterns = [
-    path("login_register", login),
+    path('signup/', views.signup, name='signup'),
+    path('login/', auth_views.LoginView.as_view(template_name='user/login.html', authentication_form=LoginForm), name='login'),
+    
 ]
