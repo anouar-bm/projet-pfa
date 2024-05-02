@@ -1,12 +1,13 @@
-from django.http import HttpResponse
-from django.shortcuts import render , get_object_or_404
+from django.shortcuts import render , get_object_or_404,reverse
 from app_siteweb.models import Hotel, PlaceTouristique, Activite, Restaurant
+from .models import ChatBot
+from django.http import HttpResponseRedirect, JsonResponse
+import google.generativeai as genai
+
+
 
 def index(request):
     return render(request, 'accueil/index.html')
-
-def login(request):
-    return render(request, 'accueil/login-register.html')
 
 def home_page(request):
     Hotels = Hotel.objects.all()
