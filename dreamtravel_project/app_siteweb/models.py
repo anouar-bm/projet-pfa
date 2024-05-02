@@ -37,48 +37,8 @@ class AdminManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password):
-        user = self.create_user(email, username, password)
-        user.is_superuser = True
-        user.is_staff = True
-        user.save(using=self._db)
-        return user
-
-
-class Admin(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), unique=True)
-    username = models.CharField(_('username'), max_length=150, unique=True)
-    password = models.CharField(_('password'), max_length=128)
-    is_staff = models.BooleanField(default=True)
-    is_superuser = models.BooleanField(default=False)  # Default is False for regular users
-    is_active = models.BooleanField(default=True)  # Superutilisateurs doivent être actifs par défaut
     
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='admin_user_set',
-        blank=True,
-        help_text=_('Les groupes auxquels cet utilisateur appartient.'),
-        verbose_name=_('groups'),
-    )
 
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='admin_user_permissions',
-        blank=True,
-        help_text=_('Les permissions spécifiques à cet utilisateur.'),
-        verbose_name=_('user permissions'),
-    )
-
-    objects = AdminManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
-
-    def __str__(self):
-        return self.username
-
-    class Meta:
-        db_table = 'admin'
 
 
 #class Client(abstractBaseUser):
