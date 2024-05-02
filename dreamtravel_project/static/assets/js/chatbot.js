@@ -1,58 +1,81 @@
-// Get chatbot elements
-const chatbot = document.getElementById('chatbot');
-const conversation = document.getElementById('conversation');
-const inputForm = document.getElementById('input-form');
-const inputField = document.getElementById('input-field');
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('input-form');
+    const inputField = document.getElementById('input-field');
+    const conversation = document.getElementById('conversation');
 
-// Add event listener to input form
-inputForm.addEventListener('submit', function(event) {
-  // Prevent form submission
-  event.preventDefault();
+    // Fonction pour soumettre le formulaire sans rechargement de page
+    form.addEventListener('submit', askQuestion);
 
-  // Get user input
-  const input = inputField.value;
+    function askQuestion(event) {
+        event.preventDefault(); // Empêche le rechargement de la page
 
-  // Clear input field
-  inputField.value = '';
-  const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: "2-digit" });
+        const question = inputField.value.trim();
 
-  // Add user input to conversation
-  let message = document.createElement('div');
-  message.classList.add('chatbot-message', 'user-message');
-  message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${input}</p>`;
-  conversation.appendChild(message);
+        if (question === "") {
+            return; // Ne rien faire si le champ est vide
+        }
 
-  // Generate chatbot response
-  const response = generateResponse(input);
+        displayUserMessage(question); // Afficher le message de l'utilisateur
+        sendQuestionToServer(question); // Envoyer la question au serveur
 
-  // Add chatbot response to conversation
-  message = document.createElement('div');
-  message.classList.add('chatbot-message','chatbot');
-  message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${response}</p>`;
-  conversation.appendChild(message);
-  message.scrollIntoView({behavior: "smooth"});
+        inputField.value = ""; // Effacer le champ d'entrée
+    }
+
+    function displayUserMessage(text) {
+        const userDiv = document.createElement('div');
+        userDiv.className = 'chatbot-message user-message';
+        userDiv.innerHTML = `<p class="chatbot-text">${text}</p>`;
+        conversation.appendChild(userDiv);
+        scrollConversationToEnd(); // Défiler jusqu'à la fin
+    }
+
+    function displayBotResponse(text) {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'chatbot-message chatbot-message';
+        botDiv.innerHTML = `<p class="chatbot-text">${text}</p>`;
+        conversation.appendChild(botDiv);
+        scrollConversationToEnd(); // Défiler jusqu'à la fin
+    }
+
+    function sendQuestionToServer(text) {
+        const csrfToken = getCookie('csrftoken'); // Utiliser le token CSRF du cookie
+
+        $.ajax({
+            type: 'POST',
+            url: '/ask_question/', // Assurez-vous que c'est la bonne URL
+            data: {
+                text: text,
+                csrfmiddlewaretoken: csrfToken // Inclure le token CSRF
+            },
+            success: function(response) {
+                if (response && response.data) {
+                    displayBotResponse(response.data.text);
+                } else {
+                    displayBotResponse('No response data received.');
+                }
+            },
+            error: function() {
+                displayBotResponse('Sorry, there was an error processing your request.');
+            }
+        });
+    }
+
+    function scrollConversationToEnd() {
+        conversation.scrollTop = conversation.scrollHeight; // Défiler jusqu'à la fin
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=') && name === 'csrftoken') {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 });
-
-// Generate chatbot response function
-function generateResponse(input) {
-    // Add chatbot logic here
-    const responses = [
-      "Hello, how can I help you today? 😊",
-      "I'm sorry, I didn't understand your question. Could you please rephrase it? 😕",
-      "I'm here to assist you with any questions or concerns you may have. 📩",
-      "I'm sorry, I'm not able to browse the internet or access external information. Is there anything else I can help with? 💻",
-      "What would you like to know? 🤔",
-      "I'm sorry, I'm not programmed to handle offensive or inappropriate language. Please refrain from using such language in our conversation. 🚫",
-      "I'm here to assist you with any questions or problems you may have. How can I help you today? 🚀",
-      "Is there anything specific you'd like to talk about? 💬",
-      "I'm happy to help with any questions or concerns you may have. Just let me know how I can assist you. 😊",
-      "I'm here to assist you with any questions or problems you may have. What can I help you with today? 🤗",
-      "Is there anything specific you'd like to ask or talk about? I'm here to help with any questions or concerns you may have. 💬",
-      "I'm here to assist you with any questions or problems you may have. How can I help you today? 💡",
-    ];
-    
-    // Return a random response
-    return responses[Math.floor(Math.random() * responses.length)];
-  }
-  
-  

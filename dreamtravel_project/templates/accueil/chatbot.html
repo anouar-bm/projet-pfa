@@ -1,0 +1,60 @@
+{% extends "accueil/base1.html" %}
+{% load static %}
+
+{% block extra_css %} 
+<link rel="stylesheet" href="{% static 'assets/css/chatbot.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="contact" id="contact" style="margin-top: 90px">
+    
+
+    <div class="chatbot-container">
+        <h1 class="heading">
+        <span>c</span>
+        <span>h</span>
+        <span>a</span>
+        <span>t</span>
+        <span>b</span>
+        <span>o</span>
+        <span>t</span>
+    </h1>
+    <div id="header">
+            <h1>Chatbot</h1>
+        </div>
+        <div id="chatbot">
+            <div id="conversation">
+                {% if chats %}
+                    {% for chat in chats %}
+                        <div class="chatbot-message user-message">
+                            <p class="chatbot-text">{{ chat.text_input }}</p>
+                        </div>
+                        <div class="chatbot-message chatbot-message">
+                            <p class="chatbot-text">{{ chat.gemini_output | safe }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="chatbot-message">
+                        <p class="chatbot-text">Hi! 👋 it's great to see you!</p>
+                    </div>
+                {% endif %}
+            </div>
+            <form id="input-form" onsubmit="askQuestion(event)">
+                <message-container>
+                <input id="input-field" type="text" placeholder="Type your message here">
+                <button id="submit-button" type="submit">
+                    <img class="send-icon" src="{% static 'assets/images/send-message.png' %}" alt="Send Message Icon">  
+                </button>
+              </message-container>
+            </form>
+        </div>
+    </div>
+</section>
+<script src="{% static 'assets/js/chatbot.js' %}"></script>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+{% endblock %}

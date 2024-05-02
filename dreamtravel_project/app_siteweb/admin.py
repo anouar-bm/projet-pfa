@@ -2,6 +2,12 @@ from django.contrib import admin
 from app_siteweb.models import *
 # Register your models here.
 
+class chatbotAdmin(admin.ModelAdmin):
+    list_display = ('user','text_input', 'gemini_output', 'date')
+    search_fields = ['text_input']
+admin.site.register(ChatBot, chatbotAdmin)
+
+
 class HotelAdmin(admin.ModelAdmin):
     list_display = ('nom','emplacement', 'num_telephone', 'prix', 'promo', 'calculate_total_price_with_promotion','slug')
     list_filter = ('emplacement', 'promo')
