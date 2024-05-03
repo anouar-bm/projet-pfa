@@ -2,40 +2,73 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Dream Travel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dream Travel{% endblock %}</title>
 
-    <!-- Block for additional CSS -->
-    {% block extra_css %} {% endblock %}
-  </head>
-  <body>
+    <!-- Liens CSS de base -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
+    <!-- Bloc CSS supplémentaire -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Bloc d'en-tête -->
     <header>
-      <div id="menu-bar" class="fas fa-bars"></div>
-      <a href="#" class="logo"><span>Dream</span>Travel</a>
-      <nav class="navbar">
-        <a href="{% url 'app_siteweb:index' %}">Home</a>
-        <a href="{% url 'app_siteweb:index' %}">places</a>
-        <a href="#services">Services</a>
-        <a href="#review">Review</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <a href="#" class="logo"><span>Dream</span>Travel</a>
+        <nav class="navbar">
+    <a href="{% url 'app_siteweb:home' %}">Home</a>
+    <a href="{% url 'app_siteweb:home' %}#places">Places</a>
+    <a href="{% url 'app_siteweb:home' %}#hotels">Hotels</a>
+    <a href="{% url 'app_siteweb:home' %}#restaurant">Restaurant</a>
+    <a href="{% url 'app_siteweb:home' %}#activite">Activite</a>
+</nav>
+
+        
+        <div class="icons">
+            {% if request.user.is_authenticated %}
+                <!-- Bouton de déconnexion -->
+                <button class="btn btn-primary" style="border-radius: 99em;" onclick="logoutUser();">Log Out</button>
+
+                <script>
+                function logoutUser() {
+                    fetch("{% url 'user_app:logout' %}", {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        }
+                    }).then(() => {
+                        // Redirection après la déconnexion
+                        window.location.href = "{% url 'app_siteweb:index' %}";
+                    }).catch(error => {
+                        console.error("Erreur de déconnexion :", error);
+                    });
+                }
+                </script>
+
+                <!-- Bouton vers le chatbot -->
+                <button class="btn btn-primary" style="border-radius: 99em;" onclick="window.location.href='{% url 'app_siteweb:chat' %}'">Chatbot</button>
+
+            {% else %}
+                <!-- Boutons de connexion et d'inscription -->
+                <button class="btn btn-primary" style="border-radius: 99em;" onclick="window.location.href='{% url 'user_app:login' %}'">Login</button>
+                <button class="btn btn-primary" style="border-radius: 99em;" onclick="window.location.href='{% url 'user_app:signup' %}'">Register</button>
+            {% endif %}
+        </div>
     </header>
 
-    <!-- Content block -->
+    <!-- Bloc de contenu principal -->
     {% block content %}
-    <!-- Add your content here -->
+    <!-- Contenu par défaut pour les pages utilisant ce modèle -->
     {% endblock %}
 
-    <!-- Optional JavaScript block -->
+    <!-- Bloc JavaScript supplémentaire -->
     {% block extra_js %}
     <!-- <script src="{% static 'assets/js/custom.js' %}"></script> -->
     {% endblock %}
-  </body>
+</body>
 </html>
