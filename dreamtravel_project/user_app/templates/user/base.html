@@ -7,14 +7,14 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>{% block title %}{% endblock %} | dreamtravel</title>
+    <title>{% block title %}{% endblock %} | Dreamtravel</title>
   </head>
 
   <body>
     <nav
       class="py-6 px-6 flex justify-between items-center border-b border-gray-200"
     >
-      <a href="/" class="text-xl font-semibold">Puddle</a>
+      <a href="/" class="text-xl font-semibold">Dreamtravel</a>
 
       <div class="space-x-6">
         <a
@@ -42,12 +42,16 @@
         {% else %}
         <a
           href="{% url 'user_app:signup' %}"
-          class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700"
+          class="px-6 py-3 text-lg font-semibold bg-orange-500 text-white rounded-xl hover:bg-orange-700"
+          style="background-color: #fea500;"
+
           >Sign up</a
         >
         <a
           href="{% url 'user_app:login' %}"
-          class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700"
+          class="px-6 py-3 text-lg font-semibold bg-orange-500 text-white rounded-xl hover:bg-orange-700"
+          style="background-color: #fea500;"
+
           >Log in</a
         >
         {% endif %}
