@@ -5,7 +5,6 @@ from django.http import HttpResponseRedirect, JsonResponse
 import google.generativeai as genai
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-import logging
 
 
 # add here to your generated API key

@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("user/",include ("user_app.urls")),
     path("", include("app_siteweb.urls")),  
+    path("scrapping/",include("scraping_app.urls")),
     #path("login_register/",include("app_siteweb.urls")),
    # path("",index)
 ]
