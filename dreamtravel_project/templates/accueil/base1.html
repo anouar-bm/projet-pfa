@@ -50,8 +50,21 @@
                 }
                 </script>
 
-                <!-- Bouton vers le chatbot -->
-                <button class="btn btn-primary" style="border-radius: 99em;" onclick="window.location.href='{% url 'app_siteweb:chat' %}'">Chatbot</button>
+<!-- Le bouton qui doit être masqué si vous êtes déjà sur /chat/ -->
+<button id="chatbot-button" class="btn btn-primary" style="border-radius: 99em;"onclick="window.location.href='{% url 'app_siteweb:chat' %}'">Chatbot</button>
+</button>
+
+<!-- Script pour masquer le bouton si la page est /chat/ -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var currentPath = window.location.pathname;  // Obtenir le chemin actuel de la page
+    
+    if (currentPath === "/chat/") {
+        var chatbotButton = document.getElementById("chatbot-button");
+        chatbotButton.style.display = 'none';  // Masquer le bouton
+    }
+});
+</script>
 
             {% else %}
                 <!-- Boutons de connexion et d'inscription -->

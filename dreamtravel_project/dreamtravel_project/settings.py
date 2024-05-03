@@ -146,7 +146,6 @@ JAZZMIN_SETTINGS = {
 }
 LOGIN_URL = 'user_app:login'
 LOGIN_REDIRECT_URL = 'app_siteweb:home'
-LOGOUT_REDIRECT_URL = 'app_siteweb:home'
+LOGOUT_REDIRECT_URL = 'u'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Expire la session à la fermeture du navigateur
 
-# AUTH_user_model = 'app_siteweb.Client'
