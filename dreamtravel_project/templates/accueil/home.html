@@ -30,20 +30,59 @@
     <nav class="navbar">
         <a href="#home">home</a>
         <a href="#gallery">places</a>
-        <a href="#services">services</a>
-        <a href="#review">review</a>
+        <a href="#review">restaurant</a>
+        <a href="#contact">activite</a>
         <a href="#contact">contact</a>
+
     </nav>
 
     <div class="icons">
-        <a href="user/login_register" class="fas fa-user" id="login-btn"></a>
+        {% if request.user.is_authenticated %}
+
+<!-- Bouton de déconnexion -->
+<button class="btn btn-primary" style="border-radius: 99em;" 
+        onclick="logoutUser();">
+    Log Out
+</button>
+
+<script>
+function logoutUser() {
+    fetch("{% url 'user_app:logout' %}", {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}'
+        }
+    }).then(() => {
+        // Rediriger après la déconnexion
+        window.location.href = "{% url 'app_siteweb:home' %}";
+    }).catch(error => {
+        console.error("Erreur de déconnexion :", error);
+    });
+}
+</script>
+
+
+<button type="button" class="btn btn-primary"
+        style="border-radius: 99em;"
+        onclick="window.location.href='{% url 'app_siteweb:chat' %}'">
+    chatbot
+</button>
+
+        {% else %}
+<button type="button" class="btn btn-primary" 
+        style="border-radius: 99em;" 
+        onclick="window.location.href='{% url 'user_app:login'%}'">
+    Login
+</button>
+       <button type="button" class="btn btn-primary" 
+        style="border-radius: 99em;" 
+        onclick="window.location.href='{% url 'user_app:signup' %}'">
+    register
+</button>
+        {% endif %}
     </div>
 
-    <form action="" class="search-bar-container">
-        <input type="search" id="search-bar" placeholder="search here...">
-        <label for="search-bar" class="fas fa-search"></label>
-    </form>
-
+    
 </header>
 
 <!-- header section ends -->

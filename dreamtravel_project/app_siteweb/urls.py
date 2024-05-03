@@ -4,8 +4,8 @@ from app_siteweb.views import index,home_page,essai_hotel,hotel_detail,activite_
 app_name = 'app_siteweb'
 urlpatterns = [
     #path("home", home_page, name='homepage'),
-    path("", index,name='index'),
-    path("home", home_page, name='places'),
+    path("essai", index,name='index'),
+    path("", home_page, name='home'),
     path("mamounia", essai_hotel),
     path('hotel/<str:slug>',hotel_detail,name='hotel-detail'),
     path('activite/<str:slug>',activite_detail,name='activite-detail'),
