@@ -45,27 +45,41 @@ Model = genai.GenerativeModel(
     safety_settings=safety_settings
 )
 
-
 @csrf_exempt
+@login_required
 def ask_question(request):
     if request.method == "POST":
         text = request.POST.get("text")
-        chat = Model.start_chat()
         user = request.user
-        user_name = user.first_name
-        message = f"{user_name} dit : {text}"
-        response = chat.send_message(message)
-        ChatBot.objects.create(text_input=message, gemini_output=response.text, user=user)
-        # Extract necessary data from response
+        user_name = user.first_name        
+        # Récupérer l'historique des messages pour l'utilisateur courant
+        chat_history = ChatBot.objects.filter(user=user).order_by('date')
+        formatted_history = []
+
+        # Construire l'historique formaté
+        for idx, entry in enumerate(chat_history):
+            if idx % 2 == 0:
+                formatted_history.append({"role": "user", "parts": [f"username est {user_name}: {entry.text_input}"]})
+            else:
+                formatted_history.append({"role": "model", "parts": [entry.gemini_output]})
+        
+        # Simuler l'envoi du message au chatbot 
+        chat = Model.start_chat(history=formatted_history)
+        response = chat.send_message(text)
+
+        # Sauvegarder le nouveau message et la réponse du chatbot
+        ChatBot.objects.create(text_input=text, gemini_output=response.text, user=user)
+
+        # Extraire les données nécessaires de la réponse
+        response_text = response.text
+        
         response_data = {
-            "text": response.text,  # Assuming response.text contains the relevant response data
-            # Add other relevant data from response if needed
+            "text": response_text,
+            "history": formatted_history  # Retourner l'historique des conversations dans la réponse
         }
         return JsonResponse({"data": response_data})
     else:
-        return HttpResponseRedirect(
-            reverse("chat")
-        )  # Redirect to chat page for GET requests
+        return HttpResponseRedirect(reverse("chat"))  # Rediriger vers la page de chat pour les requêtes GET
 
 @csrf_exempt
 @login_required
@@ -74,8 +88,8 @@ def chat(request):
     chats = ChatBot.objects.filter(user=user)
     return render(request, "accueil/chatbot.html", {"chats": chats})
 
-def index(request):
-    return render(request, 'accueil/index.html')
+def fake(request):
+    return render(request, 'accueil/fake.html')
 
 def home_page(request):
     Hotels = Hotel.objects.all()

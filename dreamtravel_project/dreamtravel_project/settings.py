@@ -144,8 +144,11 @@ JAZZMIN_SETTINGS = {
     'show_ui_builder': True,
     
 }
+
+
+
 LOGIN_URL = 'user_app:login'
 LOGIN_REDIRECT_URL = 'app_siteweb:home'
-LOGOUT_REDIRECT_URL = 'u'
+LOGOUT_REDIRECT_URL = 'user_app:login'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Expire la session à la fermeture du navigateur
 

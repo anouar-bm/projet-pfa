@@ -43,7 +43,7 @@
                         }
                     }).then(() => {
                         // Redirection après la déconnexion
-                        window.location.href = "{% url 'app_siteweb:index' %}";
+                        window.location.href = "{% url 'app_siteweb:home' %}";
                     }).catch(error => {
                         console.error("Erreur de déconnexion :", error);
                     });
